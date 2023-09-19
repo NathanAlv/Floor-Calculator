@@ -1,24 +1,18 @@
-import React from "react";
-import { View, TextInput, StyleSheet } from "react-native";
-import { styled } from "styled-components/native";
+import React from 'react';
+import { View, TextInput } from 'react-native';
+import { tw } from 'nativewind';
 
-export default function MyInput(props) {
+const MyInput = ({ myPlaceholder, value, onChangeText }) => {
   return (
     <View>
-      <V
-        placeholder={props.myPlaceholder}
-        value={props.value}
-        onChangeText={props.onChangeText}
+      <TextInput
+        placeholder={myPlaceholder}
+        value={value}
+        onChangeText={onChangeText}
+        style={tw`mt-18 w-250 p-8-4 border border-gray-300 rounded-md`}
       />
     </View>
-  )
-}
+  );
+};
 
-export const V = styled.TextInput`
-    margin-top: 18;
-    width: 250;
-    padding: 8 4;
-    border-width: 1;
-    border-color: "#d6d6d6";
-    border-radius: 4;
-`
+export default MyInput;

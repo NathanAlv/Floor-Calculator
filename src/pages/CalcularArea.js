@@ -1,17 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button } from 'react-native';
-import { styled } from 'styled-components/native';
-
-export const textArea = styled.Text`
-    border-color: gray;
-    border-width: 1;
-    padding: 5;
-    margin-top: 10;
-`
-
-export const buttonArea = styled.Button`
-    margin-top: 10;
-`
+import { tw } from 'nativewind';
 
 const Calculate_area = () => {
   const [area, setArea] = useState('');
@@ -19,8 +8,8 @@ const Calculate_area = () => {
 
   const calculateResult = () => {
     if (area) {
-      const areaInSquareMeters = parseFloat(area.replace(',', '.')); 
-      const sideLength = Math.sqrt(areaInSquareMeters); 
+      const areaInSquareMeters = parseFloat(area.replace(',', '.'));
+      const sideLength = Math.sqrt(areaInSquareMeters);
 
       setResult(
         `Área Total: ${areaInSquareMeters.toFixed(2)} m²\nLargura por m²: ${sideLength.toFixed(2)} m\nComprimento por m²: ${sideLength.toFixed(2)} m`
@@ -31,25 +20,24 @@ const Calculate_area = () => {
   };
 
   return (
-    <View style={{ padding: 20 }}>
-      <Text style={{ fontSize: 20, marginBottom: 10 }}>Cálculo de Largura e Comprimento por m²</Text>
-      
+    <View style={tw`padding:20`}>
+      <Text style={tw`font-size:20 mb-10`}>Cálculo de Largura e Comprimento por m²</Text>
+
       <View>
         <Text>Área (metros):</Text>
-        <textArea
+        <TextInput
           keyboardType="numeric"
           value={area}
           onChangeText={setArea}
+          style={tw`border-gray-400 border-width:1 padding:5 mt-10`}
         />
       </View>
-      
-      <View> 
-        <buttonArea>
+
+      <View>
         <Button title="Calcular" onPress={calculateResult} />
-        </buttonArea>
       </View>
-      
-      <Text><buttonArea>{result}</buttonArea></Text>
+
+      <Text style={tw`mt-10`}>{result}</Text>
     </View>
   );
 };

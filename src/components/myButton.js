@@ -1,27 +1,15 @@
-import React from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
-import { styled } from "styled-components/native";
+import React from 'react';
+import { View, Text, TouchableOpacity } from 'react-native';
+import { tw } from 'nativewind';
 
-export const button = styled.Button`
-    margin-top: 18;
-    width: 200;
-    padding: 8;
-    background-color: "#0000FF";
-    justify-content: "center";
-    align-items: "center";
-    border-radius: 8;
-`
-export const buttonTitle = styled.Text`
-    color: white;
-    font-size: 20;
-`
-
-export default function MyButton(props) {
+const MyButton = ({ title, onPress }) => {
   return (
     <View>
-      <button onPress={props.onPress}>
-        <buttonTitle>{props.title}</buttonTitle>
-      </button>
+      <TouchableOpacity onPress={onPress} style={tw`mt-18 w-200 p-8 bg-blue-500 justify-center items-center rounded-md`}>
+        <Text style={tw`text-white font-size:20`}>{title}</Text>
+      </TouchableOpacity>
     </View>
-  )
-}
+  );
+};
+
+export default MyButton;

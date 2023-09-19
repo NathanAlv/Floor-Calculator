@@ -1,19 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Picker, Button } from 'react-native';
-import { styled } from 'styled-components/native';
-
-export const abacate = styled.TextInput`
-    border-color: gray;
-    border-width: 1;
-    padding: 5;
-`
-export const abacateButton = styled.Button`
-    margin-top: 10;
-`
-export const abacateText = styled.Text`
-    font-size: 20;
-    margin-bottom: 10;
-`
+import { tw } from 'nativewind';
 
 const Calculate_floor = () => {
   const [width, setWidth] = useState('');
@@ -27,46 +14,47 @@ const Calculate_floor = () => {
   };
 
   return (
-    <View style={{ padding: 20 }}>
-      <abacateText>Orçamento dos Pisos Disponíveis</abacateText>
-      
+    <View style={tw`padding:20`}>
+      <Text style={tw`font-size:20 mb-10`}>Orçamento dos Pisos Disponíveis</Text>
+
       <View>
         <Text>Largura m²:</Text>
-        <abacate
+        <TextInput
           keyboardType="numeric"
           value={width}
           onChangeText={setWidth}
+          style={tw`border-gray-400 border-width:1 padding:5 mt-10`}
         />
       </View>
-      
+
       <View>
         <Text>Comprimento m²:</Text>
-        <abacate
+        <TextInput
           keyboardType="numeric"
           value={length}
           onChangeText={setLength}
+          style={tw`border-gray-400 border-width:1 padding:5 mt-10`}
         />
       </View>
-      
+
       <View>
         <Text>Tipo de Pisos:</Text>
         <Picker
           selectedValue={priceType}
           onValueChange={(itemValue) => setPriceType(itemValue)}
+          style={tw`mt-10`}
         >
           <Picker.Item label="Cerâmica" value="35.00" />
           <Picker.Item label="Porcelanato" value="125.00" />
           <Picker.Item label="Madeira" value="330.00" />
         </Picker>
       </View>
-      
-      <View >
-        <abacateButton>
+
+      <View>
         <Button title="Calcular Preço" onPress={calculateResult} />
-        </abacateButton>
       </View>
-      
-      <abacateText>{result}</abacateText>
+
+      <Text style={tw`mt-10`}>{result}</Text>
     </View>
   );
 };

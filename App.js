@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import styled from 'styled-components/native';
+import { tw } from 'nativewind';
 
 import HomeScreen from './pages/HomeScreen';
 import Calculate_area from './pages/Calcular_area';
@@ -9,14 +9,13 @@ import Calculate_floor from './pages/Calcular_piso';
 
 const Stack = createNativeStackNavigator();
 
-const HeaderTitle = styled.Text`
-  color: #fff;
-  font-size: 20px;
-`;
+const HeaderTitle = ({ children }) => {
+  return <Text style={tw`text-white font-size:20`}>{children}</Text>;
+};
 
-const HeaderContainer = styled.View`
-  background-color: #0000FF;
-`;
+const HeaderContainer = ({ children }) => {
+  return <View style={tw`bg-blue-500`}>{children}</View>;
+};
 
 export default function App() {
   return (
@@ -27,9 +26,7 @@ export default function App() {
           component={HomeScreen}
           options={{
             headerTitle: () => <HeaderTitle>Página Inicial</HeaderTitle>,
-            headerStyle: {
-              backgroundColor: '#0000FF',
-            },
+            headerContainerStyle: HeaderContainer,
           }}
         />
 
@@ -38,9 +35,7 @@ export default function App() {
           component={Calculate_area}
           options={{
             headerTitle: () => <HeaderTitle>Saiba a Área</HeaderTitle>,
-            headerStyle: {
-              backgroundColor: '#0000FF',
-            },
+            headerContainerStyle: HeaderContainer,
           }}
         />
 
@@ -49,9 +44,7 @@ export default function App() {
           component={Calculate_floor}
           options={{
             headerTitle: () => <HeaderTitle>Orçamento</HeaderTitle>,
-            headerStyle: {
-              backgroundColor: '#0000FF',
-            },
+            headerContainerStyle: HeaderContainer,
           }}
         />
       </Stack.Navigator>

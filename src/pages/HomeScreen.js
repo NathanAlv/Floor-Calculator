@@ -1,29 +1,18 @@
-import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import React from 'react';
+import { View, Text } from 'react-native';
+import { tw } from 'nativewind';
 
-import MyButton from "../components/MyButton";
-import { styled } from "styled-components/native";
+import MyButton from '../components/MyButton';
 
-export const container = styled.container`
-    flex: 1;
-    align-items: center;
-    padding-top: 16; 
-    background-color: "#fff";
-`
-
-export const title = styled.Text`
-    font-size: 24;
-`
-
-export default function HomeScreen ({ navigation }) {
+const HomeScreen = ({ navigation }) => {
   return (
-    <View>
-    <container>
-      <title>Tela Principal</title>
+    <View style={tw`flex:1 items-center pt-16 bg-white`}>
+      <Text style={tw`font-size:24`}>Tela Principal</Text>
 
-      <MyButton title="Saiba a Área" onPress={() => navigation.navigate("AreaScreen")} />
-      <MyButton title="Fazer o Orçamento" onPress={() => navigation.navigate("FloorScreen")} />
-    </container>
+      <MyButton title="Saiba a Área" onPress={() => navigation.navigate('AreaScreen')} />
+      <MyButton title="Fazer o Orçamento" onPress={() => navigation.navigate('FloorScreen')} />
     </View>
   );
-}
+};
+
+export default HomeScreen;
