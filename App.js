@@ -1,20 +1,22 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { tw } from 'nativewind';
+import { NativeWindStyleSheet } from 'nativewind';
 
-import HomeScreen from './pages/HomeScreen';
-import Calculate_area from './pages/Calcular_area';
-import Calculate_floor from './pages/Calcular_piso';
+import { HomeScreen } from './src/pages/HomeScreen';
+import { Calculate_floor } from './src/pages/CalcularPiso';
+import Calculate_area from './src/pages/calcular-area';
 
 const Stack = createNativeStackNavigator();
 
-const HeaderTitle = ({ children }) => {
-  return <Text style={tw`text-white font-size:20`}>{children}</Text>;
-};
+const nativeWindStyleSheet = new NativeWindStyleSheet();
 
-const HeaderContainer = ({ children }) => {
-  return <View style={tw`bg-blue-500`}>{children}</View>;
+const HeaderContainer = ({ children, nativeWindStyleSheet }) => {
+  const headerContainerStyle = nativeWindStyleSheet.create({
+    backgroundColor: 'blue',
+  });
+
+  return <View style={headerContainerStyle}>{children}</View>;
 };
 
 export default function App() {
@@ -26,7 +28,7 @@ export default function App() {
           component={HomeScreen}
           options={{
             headerTitle: () => <HeaderTitle>Página Inicial</HeaderTitle>,
-            headerContainerStyle: HeaderContainer,
+            headerContainerStyle: <HeaderContainer nativeWindStyleSheet={nativeWindStyleSheet} />,
           }}
         />
 
@@ -35,7 +37,7 @@ export default function App() {
           component={Calculate_area}
           options={{
             headerTitle: () => <HeaderTitle>Saiba a Área</HeaderTitle>,
-            headerContainerStyle: HeaderContainer,
+            headerContainerStyle: <HeaderContainer nativeWindStyleSheet={nativeWindStyleSheet} />,
           }}
         />
 
@@ -44,7 +46,7 @@ export default function App() {
           component={Calculate_floor}
           options={{
             headerTitle: () => <HeaderTitle>Orçamento</HeaderTitle>,
-            headerContainerStyle: HeaderContainer,
+            headerContainerStyle: <HeaderContainer nativeWindStyleSheet={nativeWindStyleSheet} />,
           }}
         />
       </Stack.Navigator>
