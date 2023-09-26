@@ -1,23 +1,20 @@
-import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { NativeWindStyleSheet } from 'nativewind';
+import React from 'react';
+import CalculateArea from './src/pages/calcular-area';
+import CalculateFloor from './src/pages/CalcularPiso';
+import HomeScreen from './src/pages/HomeScreen';
+import { Text, View } from './src/components/nativeWind';
+import { styled } from 'nativewind';
 
-import { HomeScreen } from './src/pages/HomeScreen';
-import { Calculate_floor } from './src/pages/CalcularPiso';
-import Calculate_area from './src/pages/calcular-area';
 
 const Stack = createNativeStackNavigator();
 
-const nativeWindStyleSheet = new NativeWindStyleSheet();
+const HeaderTitle = styled(Text)
 
-const HeaderContainer = ({ children, nativeWindStyleSheet }) => {
-  const headerContainerStyle = nativeWindStyleSheet.create({
-    backgroundColor: 'blue',
-  });
+const HeaderContainer = styled(View)
 
-  return <View style={headerContainerStyle}>{children}</View>;
-};
+
 
 export default function App() {
   return (
@@ -27,26 +24,28 @@ export default function App() {
           name="Home"
           component={HomeScreen}
           options={{
-            headerTitle: () => <HeaderTitle>Página Inicial</HeaderTitle>,
-            headerContainerStyle: <HeaderContainer nativeWindStyleSheet={nativeWindStyleSheet} />,
+            headerTitle: () => 
+            <HeaderContainer className= 'flex-1 items-center justify-center bg-blue-500'>
+              <HeaderTitle className='text-white items-center font-size:20'>Página Inicial</HeaderTitle>
+              </HeaderContainer>,
           }}
         />
 
         <Stack.Screen
           name="AreaScreen"
-          component={Calculate_area}
+          component={CalculateArea}
           options={{
-            headerTitle: () => <HeaderTitle>Saiba a Área</HeaderTitle>,
-            headerContainerStyle: <HeaderContainer nativeWindStyleSheet={nativeWindStyleSheet} />,
+            headerTitle: () => 
+              <HeaderTitle>Saiba a Área</HeaderTitle>,
           }}
         />
 
         <Stack.Screen
           name="FloorScreen"
-          component={Calculate_floor}
+          component={CalculateFloor}
           options={{
-            headerTitle: () => <HeaderTitle>Orçamento</HeaderTitle>,
-            headerContainerStyle: <HeaderContainer nativeWindStyleSheet={nativeWindStyleSheet} />,
+            headerTitle: () => 
+            <HeaderTitle>Orçamento</HeaderTitle>,
           }}
         />
       </Stack.Navigator>

@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button } from 'react-native';
-import { NativeWindStyleSheet } from 'nativewind';
+import { Button } from 'react-native';
+import { Text, TextInput, View } from '../components/nativeWind';
 
 const Calculate_area = () => {
-  const nativeWindStyleSheet = new NativeWindStyleSheet();
-
   const [area, setArea] = useState('');
   const [result, setResult] = useState('');
 
@@ -21,20 +19,9 @@ const Calculate_area = () => {
     }
   };
 
-  const styles = nativeWindStyleSheet.create({
-    padding: 20,
-    fontSize: 20,
-    marginBottom: 10,
-    borderGray: 400,
-    borderWidth: 1,
-    padding: 5,
-    marginTop: 10,
-    marginTop: 10,
-  });
-
   return (
-    <View style={styles.padding}>
-      <Text style={styles.fontSize}>{styles.marginBottom}Cálculo de Largura e Comprimento por m²</Text>
+    <View className={`padding:20`}>
+      <Text className={`font-size:20 mb-10`}>Cálculo de Largura e Comprimento por m²</Text>
 
       <View>
         <Text>Área (metros):</Text>
@@ -42,7 +29,7 @@ const Calculate_area = () => {
           keyboardType="numeric"
           value={area}
           onChangeText={setArea}
-          style={styles.borderGray}
+          className={`border-gray-400 border-width:1 padding:5 mt-10`}
         />
       </View>
 
@@ -50,7 +37,7 @@ const Calculate_area = () => {
         <Button title="Calcular" onPress={calculateResult} />
       </View>
 
-      <Text style={styles.marginTop}>{result}</Text>
+      <Text className={`mt-10`}>{result}</Text>
     </View>
   );
 };
