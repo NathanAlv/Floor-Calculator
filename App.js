@@ -6,6 +6,7 @@ import CalculateFloor from './src/pages/CalcularPiso';
 import HomeScreen from './src/pages/HomeScreen';
 import { Text, View } from './src/components/nativeWind';
 import { styled } from 'nativewind';
+import { withExpoSnack } from 'nativewind';
 
 
 const Stack = createNativeStackNavigator();
@@ -16,7 +17,7 @@ const HeaderContainer = styled(View)
 
 
 
-export default function App() {
+const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
@@ -25,8 +26,8 @@ export default function App() {
           component={HomeScreen}
           options={{
             headerTitle: () => 
-            <HeaderContainer className= 'flex-1 items-center justify-center bg-blue-500'>
-              <HeaderTitle className='text-white items-center font-size:20'>Página Inicial</HeaderTitle>
+              <HeaderContainer className= 'flex-1 items-center justify-center'>
+              <HeaderTitle className= 'text-white font-size:20 '>Página Inicial</HeaderTitle>
               </HeaderContainer>,
           }}
         />
@@ -52,3 +53,5 @@ export default function App() {
     </NavigationContainer>
   );
 }
+
+export default withExpoSnack (App)

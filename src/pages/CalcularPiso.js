@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Button } from 'react-native';
 import { Picker as StyledPicker, Text, TextInput, View } from '../components/nativeWind';
 import { Picker } from '@react-native-picker/picker';
+import { withExpoSnack } from 'nativewind';
 
 const Calculate_floor = () => {
   const [width, setWidth] = useState('');
@@ -16,7 +17,7 @@ const Calculate_floor = () => {
 
   return (
     <View className={`padding:20`}>
-      <Text className={`font-size:20 mb-10`}>Orçamento dos Pisos Disponíveis</Text>
+      <Text className={`font-size:20 mb-10 items-center justify-center`}>Orçamento dos Pisos Disponíveis</Text>
 
       <View>
         <Text>Largura m²:</Text>
@@ -24,7 +25,7 @@ const Calculate_floor = () => {
           keyboardType="numeric"
           value={width}
           onChangeText={setWidth}
-          className={`border-gray-400 border-width:1 padding:5 mt-10`}
+          className={`border-gray-400 border-width:1 padding:3 mt-10`}
         />
       </View>
 
@@ -34,7 +35,7 @@ const Calculate_floor = () => {
           keyboardType="numeric"
           value={length}
           onChangeText={setLength}
-          className={`border-gray-400 border-width:1 padding:5 mt-10`}
+          className={`border-gray-400 border-width:1 padding:3 mt-10`}
         />
       </View>
 
@@ -60,4 +61,4 @@ const Calculate_floor = () => {
   );
 };
 
-export default Calculate_floor;
+export default withExpoSnack (Calculate_floor);
